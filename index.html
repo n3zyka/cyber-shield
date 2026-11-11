@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КіберЩит — кібербезпека простими словами</title>
+  <meta name="description" content="Освітній сайт про кібербезпеку: види загроз, паролі, фішинг, криптографія, відомі кібератаки та способи захисту.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 5 7v8c0 7 4.7 12.2 11 14 6.3-1.8 11-7 11-14V7L16 3Z' fill='%2322d3ee'/></svg>">
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="matrix"></canvas>
+  <div class="container hero-inner">
+    <div>
+      <span class="tag">Система захисту активна</span>
+      <h1><span class="glitch" data-text="Кібербезпека">Кібербезпека</span><br><span class="grad">простими словами</span></h1>
+      <p class="lead">Як хакери зламують паролі, чому навіть розумні люди потрапляють на фішинг і що відбувається «під капотом» шифрування. Усе це — про <span class="typed" data-words="твої паролі|твої гроші|твої дані|твою приватність"></span></p>
+      <div class="actions">
+        <a class="btn" href="threats.html">Почати вивчення →</a>
+        <a class="btn ghost" href="passwords.html#checker">Перевірити свій пароль</a>
+      </div>
+    </div>
+    <div class="terminal reveal d2" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <pre id="term"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">// чому це важливо</span>
+      <h2>Кіберзлочинність у цифрах</h2>
+      <p>Кібератаки давно перестали бути проблемою лише великих компаній. Сьогодні мішенню може стати кожен, хто має смартфон.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><div class="num">$<span data-count="10.5">0</span><small> трлн</small></div><p>прогнозовані щорічні збитки світу від кіберзлочинності у 2025 році (Cybersecurity Ventures)</p></div>
+      <div class="stat reveal d1"><div class="num"><span data-count="68">0</span><small>%</small></div><p>зламів пов'язані з людським фактором — помилкою, обманом чи необережністю (Verizon DBIR 2024)</p></div>
+      <div class="stat reveal d2"><div class="num"><span data-count="4.88">0</span><small> млн $</small></div><p>середня вартість одного витоку даних для компанії у 2024 році (IBM)</p></div>
+      <div class="stat reveal d3"><div class="num">&lt;<span data-count="1">0</span><small> с</small></div><p>потрібно, щоб підібрати пароль «123456» — він досі серед найпопулярніших у світі</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:20px">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">// основа основ</span>
+      <h2>Що таке кібербезпека?</h2>
+      <p><strong>Кібербезпека</strong> — це сукупність технологій, процесів і правил поведінки, які захищають комп'ютери, мережі, програми та дані від атак, пошкодження й несанкціонованого доступу. Її фундамент — так звана тріада CIA.</p>
+    </div>
+    <div class="cia">
+      <div class="card reveal" style="--c: var(--cyan)">
+        <div class="letter">C</div>
+        <h3>Конфіденційність</h3>
+        <p>Confidentiality. Доступ до інформації мають лише ті, кому він дозволений. Порушення — витік бази паролів чи листування.</p>
+      </div>
+      <div class="card reveal d1" style="--c: var(--violet)">
+        <div class="letter">I</div>
+        <h3>Цілісність</h3>
+        <p>Integrity. Дані не можуть бути непомітно змінені. Порушення — підміна реквізитів у рахунку чи зміна оцінок у журналі.</p>
+      </div>
+      <div class="card reveal d2" style="--c: var(--green)">
+        <div class="letter">A</div>
+        <h3>Доступність</h3>
+        <p>Availability. Система працює тоді, коли вона потрібна. Порушення — DDoS-атака, яка «кладе» сайт банку.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">// розділи сайту</span>
+      <h2>Що ти тут дізнаєшся</h2>
+      <p>Кожен розділ — окрема тема з поясненнями, прикладами та інтерактивними інструментами.</p>
+    </div>
+    <div class="cards">
+      <a class="card reveal" href="threats.html" style="--c: var(--red)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg></div>
+        <h3>Види кіберзагроз</h3>
+        <p>Віруси, черви, трояни, програми-вимагачі, DDoS, атаки «людина посередині» та SQL-ін'єкції.</p>
+        <span class="more">читати →</span>
+      </a>
+      <a class="card reveal d1" href="passwords.html" style="--c: var(--cyan)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Паролі та автентифікація</h3>
+        <p>Як сайти зберігають паролі, як їх зламують перебором і чому двофакторна автентифікація рятує акаунти.</p>
+        <span class="more">читати →</span>
+      </a>
+      <a class="card reveal d2" href="phishing.html" style="--c: var(--amber)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></div>
+        <h3>Фішинг і соціальна інженерія</h3>
+        <p>Психологічні прийоми шахраїв і вікторина: чи зможеш ти відрізнити фішинг від справжнього листа?</p>
+        <span class="more">читати →</span>
+      </a>
+      <a class="card reveal" href="crypto.html" style="--c: var(--violet)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg></div>
+        <h3>Криптографія</h3>
+        <p>Від шифру Цезаря до HTTPS: симетричне та асиметричне шифрування, хеш-функції та цифрові підписи.</p>
+        <span class="more">читати →</span>
+      </a>
+      <a class="card reveal d1" href="attacks.html" style="--c: var(--red)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Відомі кібератаки</h3>
+        <p>Хронологія найгучніших атак — від черв'яка Морріса до NotPetya та атаки на «Київстар».</p>
+        <span class="more">читати →</span>
+      </a>
+      <a class="card reveal d2" href="protection.html" style="--c: var(--green)">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Як захиститись</h3>
+        <p>Практичні правила цифрової гігієни та інтерактивний чек-лист для перевірки власної безпеки.</p>
+        <span class="more">читати →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:20px">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">// професія</span>
+      <h2>Кібербезпека як професія</h2>
+      <p>Це одна з найбільш затребуваних галузей ІТ: за оцінкою ISC2, у 2023 році світу бракувало близько 4 мільйонів фахівців із кібербезпеки.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal" style="--c: var(--red)">
+        <h3>🔴 Red Team / Пентестер</h3>
+        <p>Етичний хакер, якого компанія наймає, щоб він легально зламав її системи і показав слабкі місця раніше за зловмисників.</p>
+      </div>
+      <div class="card reveal d1" style="--c: var(--cyan)">
+        <h3>🔵 Blue Team / SOC-аналітик</h3>
+        <p>Захисник: цілодобово стежить за подіями в мережі, виявляє атаки й реагує на інциденти.</p>
+      </div>
+      <div class="card reveal d2" style="--c: var(--violet)">
+        <h3>🟣 Криптограф і дослідник</h3>
+        <p>Розробляє та аналізує алгоритми шифрування, шукає вразливості у програмах (bug bounty) і пише звіти про загрози.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/main.js"></script>
+<script>
+  // Анімація «сканування системи» в терміналі
+  (function () {
+    const el = document.getElementById("term");
+    const lines = [
+      ['dim', '$ ./cyber-shield --scan'],
+      ['', 'Ініціалізація модулів захисту...'],
+      ['ok', '[OK]   Фаєрвол активний'],
+      ['ok', '[OK]   Оновлення системи встановлені'],
+      ['warn', '[WARN] Пароль "qwerty123" знайдено у витоках'],
+      ['bad', '[FAIL] 2FA вимкнена на пошті'],
+      ['ok', '[OK]   З\'єднання захищене (TLS 1.3)'],
+      ['warn', '[WARN] Підозрілий лист: "Ваш акаунт заблоковано"'],
+      ['', ''],
+      ['', 'Рівень захисту: ██████░░░░ 60%'],
+      ['dim', '> Рекомендація: прочитай цей сайт ;)'],
+    ];
+    let i = 0, html = "";
+    function next() {
+      if (i >= lines.length) { setTimeout(() => { i = 0; html = ""; el.innerHTML = ""; next(); }, 5000); return; }
+      const [cls, text] = lines[i++];
+      html += `<span class="${cls}">${text}</span>\n`;
+      el.innerHTML = html;
+      setTimeout(next, 450 + Math.random() * 350);
+    }
+    setTimeout(next, 600);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Відомі кібератаки — КіберЩит</title>
+  <meta name="description" content="Хронологія найвідоміших кібератак: черв'як Морріса, ILOVEYOU, Stuxnet, WannaCry, NotPetya, атаки на енергосистему України та Київстар.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 5 7v8c0 7 4.7 12.2 11 14 6.3-1.8 11-7 11-14V7L16 3Z' fill='%2322d3ee'/></svg>">
+</head>
+<body>
+
+<section class="page-hero">
+  <svg class="big-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Головна</a> / Відомі атаки</div>
+    <h1>Відомі кібератаки</h1>
+    <p>Історія кібербезпеки написана атаками. Кожна велика атака змінювала уявлення про те, що можливо, і змушувала світ перебудовувати захист. Україна, на жаль, стала одним із головних полігонів кібервійни.</p>
+    <div class="meta"><span>⏱ <b>13 хв</b> читання</span><span>📅 <b>1988–2023</b></span></div>
+  </div>
+</section>
+
+<div class="container article-layout">
+  <aside class="toc"></aside>
+  <article class="prose">
+
+    <h2>Хронологія</h2>
+    <p>Нижче зібрано атаки, які стали поворотними моментами. Використовуй фільтри, щоб побачити атаки певного типу.</p>
+    <div class="filters" id="filters">
+      <button class="on" data-f="all" type="button">Усі</button>
+      <button data-f="ua" type="button">🇺🇦 Україна</button>
+      <button data-f="ransom" type="button">Вимагачі</button>
+      <button data-f="worm" type="button">Черв'яки</button>
+      <button data-f="leak" type="button">Витоки даних</button>
+      <button data-f="state" type="button">Державні хакери</button>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal" data-cat="worm" style="--c: var(--cyan)">
+        <div class="tl-card">
+          <span class="tl-year">2 ЛИСТОПАДА 1988</span>
+          <h3>Черв'як Морріса — перша епідемія в інтернеті</h3>
+          <p>Аспірант Корнельського університету Роберт Таппан Морріс запустив програму, яка мала, за його словами, лише порахувати кількість комп'ютерів у мережі. Через помилку в коді черв'як заражав ту саму машину знову й знову, доки вона не «зависала». За добу було уражено близько 6000 комп'ютерів — приблизно 10% тодішнього інтернету.</p>
+          <p><strong>Наслідки:</strong> Морріс став першою людиною, засудженою в США за законом про комп'ютерне шахрайство. Після інциденту було створено перший у світі центр реагування на комп'ютерні інциденти — CERT.</p>
+          <div class="chips"><span class="chip">черв'як</span><span class="chip">~6 000 комп'ютерів</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="worm" style="--c: #f472b6">
+        <div class="tl-card">
+          <span class="tl-year">ТРАВЕНЬ 2000</span>
+          <h3>ILOVEYOU — «лист кохання», що зламав світ</h3>
+          <p>Користувачі отримали листи з темою «ILOVEYOU» і вкладенням <code>LOVE-LETTER-FOR-YOU.TXT.vbs</code>. Windows за замовчуванням приховувала розширення <code>.vbs</code>, тому файл виглядав як звичайний текстовий документ. Після відкриття скрипт перезаписував файли на диску і розсилав себе всім контактам з адресної книги Outlook.</p>
+          <p>За кілька днів черв'як уразив десятки мільйонів комп'ютерів, серед них мережі Пентагону та британського парламенту. Збитки оцінювались у мільярди доларів. Це був один із перших масових прикладів <strong>соціальної інженерії</strong>: технічно простий скрипт спрацював через людську цікавість.</p>
+          <div class="chips"><span class="chip">черв'як</span><span class="chip">соціальна інженерія</span><span class="chip red">мільярди $ збитків</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="state" style="--c: var(--violet)">
+        <div class="tl-card">
+          <span class="tl-year">2010</span>
+          <h3>Stuxnet — перша кіберзброя</h3>
+          <p>Надзвичайно складний черв'як, виявлений у 2010 році, мав одну мету: іранський завод зі збагачення урану в Натанзі. Він проникав у мережі, ізольовані від інтернету (ймовірно, через USB-флешки), використовуючи одразу чотири вразливості нульового дня у Windows. Діставшись промислових контролерів Siemens, Stuxnet непомітно змінював швидкість обертання центрифуг, руйнуючи їх, і водночас показував операторам «нормальні» показники.</p>
+          <p><strong>Значення:</strong> вперше було доведено, що кодом можна завдати фізичної шкоди промисловому об'єкту. За даними журналістських розслідувань, за атакою стояли спецслужби США та Ізраїлю.</p>
+          <div class="chips"><span class="chip">кіберзброя</span><span class="chip">4 zero-day</span><span class="chip">промислові системи</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="leak" style="--c: var(--amber)">
+        <div class="tl-card">
+          <span class="tl-year">2013 (оприлюднено 2016–2017)</span>
+          <h3>Yahoo — найбільший витік в історії</h3>
+          <p>У 2016 році Yahoo визнала, що ще у 2013 році хакери викрали дані її користувачів. Спочатку йшлося про 1 мільярд акаунтів, а згодом компанія визнала, що постраждали <strong>всі 3 мільярди</strong>. Серед викраденого були імена, адреси, дати народження, хеші паролів (частково захищені застарілим алгоритмом MD5) та відповіді на секретні питання.</p>
+          <p>Через приховування інциденту вартість угоди з продажу Yahoo компанії Verizon знизилась приблизно на 350 мільйонів доларів.</p>
+          <div class="chips"><span class="chip">витік даних</span><span class="chip red">3 млрд акаунтів</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ua state" style="--c: #ffd84d">
+        <div class="tl-card">
+          <span class="tl-year">23 ГРУДНЯ 2015</span>
+          <h3>Атака на енергосистему України</h3>
+          <p>Перша у світі підтверджена кібератака, яка вимкнула електропостачання. Хакери з російської групи <strong>Sandworm</strong> за кілька місяців до атаки проникли в мережі трьох обласних енергокомпаній через фішингові листи з шкідливою програмою BlackEnergy. У день атаки вони віддалено відкрили вимикачі на підстанціях. Близько <strong>230 тисяч</strong> жителів Івано-Франківщини та інших регіонів залишилися без світла на кілька годин.</p>
+          <p>Щоб ускладнити відновлення, атакувальники одночасно стерли дані на комп'ютерах операторів і заблокували телефонні лінії кол-центрів DDoS-атакою.</p>
+          <div class="chips"><span class="chip ua">Україна</span><span class="chip">критична інфраструктура</span><span class="chip">Sandworm</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ua state" style="--c: #ffd84d">
+        <div class="tl-card">
+          <span class="tl-year">17 ГРУДНЯ 2016</span>
+          <h3>Industroyer — удар по Києву</h3>
+          <p>Через рік Sandworm атакувала підстанцію «Північна» поблизу Києва. Цього разу використовувалось спеціально розроблене шкідливе ПЗ <strong>Industroyer</strong> (CrashOverride), яке «розмовляло» промисловими протоколами енергосистем напряму. Частина Києва залишилась без електроенергії приблизно на годину. Фахівці назвали Industroyer найбільшою загрозою для промислових систем після Stuxnet.</p>
+          <div class="chips"><span class="chip ua">Україна</span><span class="chip">критична інфраструктура</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="worm" style="--c: var(--cyan)">
+        <div class="tl-card">
+          <span class="tl-year">ЖОВТЕНЬ 2016</span>
+          <h3>Mirai — армія «розумних» камер</h3>
+          <p>Ботнет Mirai автоматично сканував інтернет у пошуках IP-камер і роутерів із заводськими паролями на кшталт <code>admin/admin</code> і захоплював їх. Зібравши сотні тисяч пристроїв, він провів DDoS-атаку на DNS-провайдера Dyn. Кілька годин користувачі в США та Європі не могли відкрити Twitter, Netflix, Reddit, GitHub та інші сервіси.</p>
+          <p><strong>Урок:</strong> кожен незахищений пристрій Інтернету речей може стати зброєю.</p>
+          <div class="chips"><span class="chip">ботнет</span><span class="chip">DDoS</span><span class="chip">IoT</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ransom worm" style="--c: var(--red)">
+        <div class="tl-card">
+          <span class="tl-year">12 ТРАВНЯ 2017</span>
+          <h3>WannaCry — глобальна епідемія вимагача</h3>
+          <p>WannaCry поєднав програму-вимагача з черв'яком. Він використовував експлойт <strong>EternalBlue</strong> для вразливості в протоколі SMB Windows. Цей експлойт був розроблений Агентством національної безпеки США і викрадений хакерською групою Shadow Brokers. За кілька днів було заражено понад <strong>200 тисяч комп'ютерів у 150 країнах</strong>. Найбільше постраждала Національна служба здоров'я Великої Британії: скасовувались операції, а «швидкі» перенаправлялися до інших лікарень.</p>
+          <p>Microsoft випустила виправлення за два місяці до атаки. Усі уражені комп'ютери просто не були оновлені. Поширення зупинив британський дослідник Маркус Гатчінс, який знайшов у коді «аварійний вимикач»: незареєстроване доменне ім'я. Він зареєстрував цей домен за 10,69 доларів.</p>
+          <div class="chips"><span class="chip red">ransomware</span><span class="chip">черв'як</span><span class="chip">200 000+ ПК</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ua state ransom" style="--c: #ffd84d">
+        <div class="tl-card">
+          <span class="tl-year">27 ЧЕРВНЯ 2017</span>
+          <h3>NotPetya — найдорожча кібератака в історії</h3>
+          <p>Напередодні Дня Конституції України зловмисники зламали сервер оновлень популярної бухгалтерської програми <strong>M.E.Doc</strong> і розіслали всім її користувачам шкідливе оновлення. Програма маскувалася під вимагача Petya, але насправді була <strong>вайпером</strong>: вона безповоротно знищувала дані, і розшифрування не передбачалось.</p>
+          <p>В Україні були паралізовані банки, «Укрпошта», аеропорт «Бориспіль», метро, державні установи. Через мережі міжнародних компаній з українськими філіями вірус поширився світом: постраждали морський перевізник Maersk, фармацевтична Merck, FedEx. Загальні збитки, за оцінкою Білого дому, перевищили <strong>10 мільярдів доларів</strong>. Атаку офіційно приписали ГРУ РФ (група Sandworm).</p>
+          <div class="chips"><span class="chip ua">Україна</span><span class="chip">атака на ланцюг постачання</span><span class="chip red">$10+ млрд</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="leak" style="--c: var(--amber)">
+        <div class="tl-card">
+          <span class="tl-year">2017</span>
+          <h3>Equifax — ціна невстановленого оновлення</h3>
+          <p>Хакери викрали персональні дані близько <strong>147 мільйонів</strong> американців, зокрема номери соціального страхування, з бази одного з найбільших кредитних бюро США. Вони скористалися вразливістю у веб-фреймворку Apache Struts, виправлення для якої вийшло за два місяці до злому, але не було встановлене. Компанія погодилася виплатити понад 575 мільйонів доларів за рішенням регуляторів.</p>
+          <div class="chips"><span class="chip">витік даних</span><span class="chip">147 млн людей</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="state" style="--c: var(--violet)">
+        <div class="tl-card">
+          <span class="tl-year">ГРУДЕНЬ 2020</span>
+          <h3>SolarWinds — шпигунство через оновлення</h3>
+          <p>Хакери вбудували бекдор у програму моніторингу мереж <strong>SolarWinds Orion</strong>. Заражене оновлення встановили близько 18 тисяч організацій, серед них міністерства США, Microsoft та Intel. Атакувальники місяцями непомітно шпигували за обраними цілями. Атаку приписують російській розвідці (СЗР, група APT29). Інцидент став хрестоматійним прикладом атаки на ланцюг постачання.</p>
+          <div class="chips"><span class="chip">шпигунство</span><span class="chip">атака на ланцюг постачання</span><span class="chip">~18 000 організацій</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ransom" style="--c: var(--red)">
+        <div class="tl-card">
+          <span class="tl-year">ТРАВЕНЬ 2021</span>
+          <h3>Colonial Pipeline — паливна криза через один пароль</h3>
+          <p>Угруповання DarkSide атакувало компанію, яка постачає близько 45% пального на східне узбережжя США. Компанія зупинила трубопровід на шість днів, а на заправках почалась паніка й черги. Colonial заплатила викуп близько 4,4 мільйона доларів у біткоїнах (частину згодом повернуло ФБР).</p>
+          <p>Як з'ясувалося, хакери увійшли через старий VPN-акаунт <strong>без двофакторної автентифікації</strong>, пароль від якого раніше потрапив у витік.</p>
+          <div class="chips"><span class="chip red">ransomware</span><span class="chip">критична інфраструктура</span><span class="chip amber">немає 2FA</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ua state" style="--c: #ffd84d">
+        <div class="tl-card">
+          <span class="tl-year">24 ЛЮТОГО 2022</span>
+          <h3>Viasat — кібератака в першу годину вторгнення</h3>
+          <p>Приблизно за годину до початку повномасштабного вторгнення Росії в Україну хакери атакували супутникову мережу KA-SAT компанії Viasat, якою користувалися зокрема українські військові. Шкідливе ПЗ <strong>AcidRain</strong> стерло прошивку десятків тисяч супутникових модемів. Побічно постраждали користувачі по всій Європі: у Німеччині, наприклад, втратили віддалене керування близько 5800 вітрових турбін.</p>
+          <div class="chips"><span class="chip ua">Україна</span><span class="chip">вайпер</span><span class="chip">гібридна війна</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" data-cat="ua state" style="--c: #ffd84d">
+        <div class="tl-card">
+          <span class="tl-year">12 ГРУДНЯ 2023</span>
+          <h3>Київстар — наймасштабніша атака на телеком</h3>
+          <p>Найбільший мобільний оператор України раптово перестав працювати: близько <strong>24 мільйонів абонентів</strong> залишилися без мобільного зв'язку та інтернету, а в деяких містах перестали працювати системи повітряної тривоги, підключені до мережі. За даними СБУ, хакери Sandworm перебували в мережі оператора щонайменше з травня 2023 року, а в день атаки знищили тисячі віртуальних серверів. Відновлення зайняло кілька днів.</p>
+          <div class="chips"><span class="chip ua">Україна</span><span class="chip">телекомунікації</span><span class="chip red">24 млн абонентів</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Україна на передовій кібервійни</h2>
+    <p>З 2014 року Україна потерпає від найінтенсивніших державних кібератак у світі. Їх спрямовують на енергетику, телекомунікації, державні реєстри, банки й медіа. Водночас ці атаки зробили українську кібероборону однією з найдосвідченіших: Державна служба спеціального зв'язку, команда реагування <strong>CERT-UA</strong>, кіберполіція та СБУ щороку обробляють тисячі інцидентів, а напрацьований досвід вивчають західні партнери.</p>
+    <p>Окреме явище — добровольча <strong>IT-армія України</strong>, створена у 2022 році, у якій тисячі ІТ-фахівців і небайдужих громадян протидіють агресору в кіберпросторі.</p>
+
+    <h2>Уроки з історії атак</h2>
+    <p>Якщо проаналізувати описані атаки, видно повторювані закономірності:</p>
+    <div class="grid-2">
+      <div class="mini" style="--c: var(--red)"><h4><span class="dot"></span>Невстановлені оновлення</h4><p>WannaCry та Equifax експлуатували вразливості, для яких уже існували виправлення. Своєчасне оновлення запобігло б мільярдним збиткам.</p></div>
+      <div class="mini" style="--c: var(--amber)"><h4><span class="dot"></span>Людський фактор</h4><p>ILOVEYOU і атака на енергосистему 2015 року почалися з того, що людина відкрила вкладення з листа.</p></div>
+      <div class="mini" style="--c: var(--violet)"><h4><span class="dot"></span>Слабка автентифікація</h4><p>Mirai використовував заводські паролі, а Colonial Pipeline зламали через акаунт без 2FA.</p></div>
+      <div class="mini" style="--c: var(--cyan)"><h4><span class="dot"></span>Довіра до постачальників</h4><p>NotPetya і SolarWinds показали, що навіть офіційне оновлення може бути троянським конем.</p></div>
+    </div>
+    <p>Висновок простий: більшість атак можна було зупинити базовими заходами. Про них — у наступному розділі.</p>
+
+    <nav class="pager">
+      <a class="prev" href="crypto.html"><small>← Назад</small>Криптографія</a>
+      <a class="next" href="protection.html"><small>Далі →</small>Як захиститись</a>
+    </nav>
+  </article>
+</div>
+
+<script src="assets/main.js"></script>
+<script>
+  // Фільтр таймлайну
+  document.getElementById("filters").addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x === b));
+    const f = b.dataset.f;
+    document.querySelectorAll(".tl-item").forEach(item => {
+      const show = f === "all" || item.dataset.cat.split(" ").includes(f);
+      item.classList.toggle("hidden", !show);
+      if (show) item.classList.add("visible");
+    });
+  });
+</script>
+</body>
+</html>
