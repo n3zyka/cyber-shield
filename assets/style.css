@@ -152,17 +152,18 @@ a:hover { text-decoration: underline; }
 /* Глітч-ефект */
 .glitch { position: relative; display: inline-block; }
 .glitch::before, .glitch::after {
-  content: attr(data-text); position: absolute; inset: 0; opacity: .8;
+  content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none;
 }
-.glitch::before { color: var(--red); animation: glitch 3s infinite linear alternate-reverse; clip-path: inset(0 0 60% 0); }
-.glitch::after { color: var(--cyan); animation: glitch 2.4s infinite linear alternate; clip-path: inset(55% 0 0 0); }
+/* Шари видно лише на мить під час «збою», решту часу заголовок суцільно білий */
+.glitch::before { color: var(--violet); animation: glitch 4s infinite steps(1); clip-path: inset(10% 0 55% 0); }
+.glitch::after { color: var(--green); animation: glitch 4s infinite steps(1) .15s; clip-path: inset(50% 0 15% 0); }
 @keyframes glitch {
-  0%, 88% { transform: none; }
-  90% { transform: translate(-3px, 1px); }
-  92% { transform: translate(3px, -1px); }
-  94% { transform: translate(-2px, 2px); }
-  96% { transform: translate(2px, 0); }
-  100% { transform: none; }
+  0%, 89% { opacity: 0; transform: none; }
+  90% { opacity: .85; transform: translate(-4px, 1px); }
+  92% { opacity: .85; transform: translate(4px, -1px); }
+  94% { opacity: .85; transform: translate(-2px, 2px); }
+  96% { opacity: 0; transform: none; }
+  100% { opacity: 0; transform: none; }
 }
 
 /* Термінал на головній */
