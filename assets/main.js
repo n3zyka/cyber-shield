@@ -13,9 +13,28 @@ const PAGES = [
   { href: "sources.html", title: "Джерела" },
 ];
 
-const LOGO_SVG = `<svg viewBox="0 0 32 32" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linejoin="round">
+const LOGO_SVG = `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
   <path d="M16 3 5 7v8c0 7 4.7 12.2 11 14 6.3-1.8 11-7 11-14V7L16 3Z"/>
-  <path d="M11.5 16.5 14.5 19.5 20.5 12.5" stroke="#34d399"/></svg>`;
+  <path d="M11.5 16.5 14.5 19.5 20.5 12.5" stroke="#b3261e" stroke-width="2.6"/></svg>`;
+
+/* Номер «справи» і штамп у шапці кожної внутрішньої сторінки */
+function initDossier() {
+  const box = document.querySelector(".page-hero .container");
+  if (box) {
+    const idx = PAGES.findIndex(p => p.href === current);
+    const no = document.createElement("div");
+    no.className = "case-no";
+    no.textContent = `Справа № ${String(Math.max(idx, 0)).padStart(2, "0")} · Матеріали для навчання`;
+    box.prepend(no);
+    const stamp = document.createElement("div");
+    stamp.className = "stamp";
+    stamp.textContent = current === "sources.html" ? "Перевірено" : "Розсекречено";
+    if (current === "sources.html") stamp.classList.add("green");
+    box.append(stamp);
+  }
+  // На сенсорних екранах чорні смуги відкриваються дотиком
+  document.querySelectorAll(".redact").forEach(r => r.addEventListener("click", () => r.classList.toggle("open")));
+}
 
 const current = location.pathname.split("/").pop() || "index.html";
 
@@ -57,7 +76,7 @@ function buildChrome() {
             <li><a href="https://cert.gov.ua/" target="_blank" rel="noopener">CERT-UA ↗</a></li></ul>
         </div>
       </div>
-      <div class="copy"><span>© ${new Date().getFullYear()} КіберЩит · Клименчук Микола, 3КН-26Б, ВНТУ</span><span>// stay safe, think before you click</span></div>
+      <div class="copy"><span>© ${new Date().getFullYear()} КіберЩит · Клименчук Микола, 3КН-26Б, ВНТУ</span><span>// кінець справи · думай, перш ніж клікати</span></div>
     </div>`;
   document.body.append(footer);
 
@@ -223,7 +242,7 @@ function scramble(el) {
   if (REDUCED || el.dataset.scrambled) return;
   el.dataset.scrambled = "1";
   const target = el.textContent;
-  const glyphs = "01#$%&*<>/\\{}[]=+?!АБВГДЕЄЖЗИЇЙ";
+  const glyphs = "█▓▒";
   const len = target.length;
   let frame = 0;
   const total = 28;
@@ -294,10 +313,12 @@ function initNet() {
   const resize = () => {
     w = c.width = hero.offsetWidth;
     h = c.height = hero.offsetHeight;
-    const n = Math.min(70, Math.floor(w * h / 14000));
+    // «Детективна дошка»: шпильки переважно справа, щоб не заважати тексту
+    const n = Math.max(8, Math.min(22, Math.floor(w * h / 30000)));
+    const minX = w > 800 ? w * 0.45 : 0;
     pts = Array.from({ length: n }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+      x: minX + Math.random() * (w - minX), y: Math.random() * h, minX,
+      vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
     }));
   };
   resize();
@@ -315,7 +336,7 @@ function initNet() {
     ctx.clearRect(0, 0, w, h);
     for (const p of pts) {
       p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.x < p.minX || p.x > w) p.vx *= -1;
       if (p.y < 0 || p.y > h) p.vy *= -1;
       // Частинки трохи відштовхуються від курсора
       const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
@@ -324,13 +345,25 @@ function initNet() {
     for (let i = 0; i < pts.length; i++) {
       for (let j = i + 1; j < pts.length; j++) {
         const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (d < 130) {
-          ctx.strokeStyle = `rgba(34,211,238,${(1 - d / 130) * 0.35})`;
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        if (d < 230) {
+          // Червона нитка з легким провисанням
+          ctx.strokeStyle = `rgba(179,38,30,${(1 - d / 230) * 0.75})`;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo((a.x + b.x) / 2, (a.y + b.y) / 2 + d * 0.08, b.x, b.y);
+          ctx.stroke();
         }
       }
-      ctx.fillStyle = i % 5 === 0 ? "#a78bfa" : "#22d3ee";
-      ctx.beginPath(); ctx.arc(pts[i].x, pts[i].y, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+    // Шпильки
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      ctx.fillStyle = "rgba(0,0,0,.25)";
+      ctx.beginPath(); ctx.arc(p.x + 2, p.y + 3, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = i % 4 === 0 ? "#1f4596" : "#b3261e";
+      ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,.7)";
+      ctx.beginPath(); ctx.arc(p.x - 1.5, p.y - 1.5, 1.6, 0, Math.PI * 2); ctx.fill();
     }
   };
   draw();
@@ -353,6 +386,7 @@ function initPageTransitions() {
 }
 
 buildChrome();
+initDossier();
 initAutoReveal();
 initReveal();
 initToc();

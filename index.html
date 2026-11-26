@@ -7,26 +7,27 @@
   <meta name="description" content="Освітній сайт про кібербезпеку: види загроз, паролі, фішинг, криптографія, відомі кібератаки та способи захисту.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=2">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 5 7v8c0 7 4.7 12.2 11 14 6.3-1.8 11-7 11-14V7L16 3Z' fill='%2322d3ee'/></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 5 7v8c0 7 4.7 12.2 11 14 6.3-1.8 11-7 11-14V7L16 3Z' fill='%23b3261e'/></svg>">
 </head>
 <body>
 
 <section class="hero">
-  <canvas id="matrix"></canvas>
   <div class="container hero-inner">
-    <div>
-      <span class="tag">Система захисту активна</span>
+    <div class="hero-sheet">
+      <div class="stamp stamp-hero">Цілком таємно</div>
+      <span class="tag">Справа № 00 · Відкрита для навчання</span>
       <h1><span class="glitch" data-text="Кібербезпека">Кібербезпека</span><br><span class="grad">простими словами</span></h1>
-      <p class="lead">Як хакери зламують паролі, чому навіть розумні люди потрапляють на фішинг і що відбувається «під капотом» шифрування. Усе це — про <span class="typed" data-words="твої паролі|твої гроші|твої дані|твою приватність"></span></p>
+      <p class="lead">Як хакери <span class="redact">зламують паролі</span>, чому навіть розумні люди потрапляють на <span class="redact">фішинг</span> і що відбувається «під капотом» шифрування. Усе це — про <span class="typed" data-words="твої паролі|твої гроші|твої дані|твою приватність"></span></p>
+      <p class="hint">↑ наведи на чорні смуги, щоб розсекретити</p>
       <div class="actions">
         <a class="btn" href="threats.html">Почати вивчення →</a>
         <a class="btn ghost" href="passwords.html#checker">Перевірити свій пароль</a>
       </div>
     </div>
     <div class="terminal reveal d2" aria-hidden="true">
-      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="bar"><span>ЗВІТ СКАНУВАННЯ · АРКУШ 1/1</span><span>ДРУК: КіберЩит-01</span></div>
       <pre id="term"></pre>
     </div>
   </div>
@@ -147,7 +148,7 @@
   </div>
 </section>
 
-<script src="assets/main.js?v=2"></script>
+<script src="assets/main.js?v=3"></script>
 <script>
   // Анімація «сканування системи» в терміналі
   (function () {
