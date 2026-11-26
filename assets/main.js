@@ -45,6 +45,7 @@ function buildChrome() {
         <div>
           <a class="logo" href="index.html">${LOGO_SVG}<span>Кібер<b>Щит</b></span></a>
           <p>Освітній сайт про кібербезпеку: як працюють атаки, чому паролі зламують і що робити, щоб захистити себе. Індивідуальне завдання з дисципліни «Вступ до фаху».</p>
+          <p class="author">Виконав: студент групи <b>3КН-26Б</b> <b>Клименчук Микола</b><br>Вінницький національний технічний університет (ВНТУ)</p>
         </div>
         <div>
           <h5>Розділи</h5>
@@ -56,7 +57,7 @@ function buildChrome() {
             <li><a href="https://cert.gov.ua/" target="_blank" rel="noopener">CERT-UA ↗</a></li></ul>
         </div>
       </div>
-      <div class="copy"><span>© ${new Date().getFullYear()} КіберЩит</span><span>// stay safe, think before you click</span></div>
+      <div class="copy"><span>© ${new Date().getFullYear()} КіберЩит · Клименчук Микола, 3КН-26Б, ВНТУ</span><span>// stay safe, think before you click</span></div>
     </div>`;
   document.body.append(footer);
 

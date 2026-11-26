@@ -517,3 +517,5 @@ tbody tr:hover td { background: rgba(34,211,238,.03); }
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+.footer .author { font-size: 14px; }
+.footer .author b { color: var(--heading); font-weight: 600; }
