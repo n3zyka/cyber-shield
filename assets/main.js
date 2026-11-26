@@ -198,10 +198,170 @@ function initTyped() {
   tick();
 }
 
+/* ==========================================================
+   Додаткові ефекти
+   ========================================================== */
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FINE_POINTER = matchMedia("(pointer: fine)").matches;
+
+/* Автоматична поява блоків статті під час прокрутки */
+function initAutoReveal() {
+  document.querySelectorAll(".prose > h2, .prose > h3, .prose > p, .prose > ul, .prose > ol, .prose > blockquote, .prose > pre, .prose > .callout, .prose > .table-wrap, .prose > .grid-2, .prose > .cards")
+    .forEach(el => el.classList.add("reveal"));
+  document.querySelectorAll(".flow").forEach(flow => {
+    flow.classList.add("reveal-flow");
+    [...flow.children].forEach((c, i) => c.style.setProperty("--i", i));
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  document.querySelectorAll(".flow").forEach(f => io.observe(f));
+}
+
+/* «Розшифрування» тексту: випадкові символи поступово стають справжніми */
+function scramble(el) {
+  if (REDUCED || el.dataset.scrambled) return;
+  el.dataset.scrambled = "1";
+  const target = el.textContent;
+  const glyphs = "01#$%&*<>/\\{}[]=+?!АБВГДЕЄЖЗИЇЙ";
+  const len = target.length;
+  let frame = 0;
+  const total = 28;
+  const tick = () => {
+    const done = Math.floor((frame / total) * len);
+    let html = "";
+    for (let i = 0; i < len; i++) {
+      const ch = target[i];
+      if (i < done || ch === " ") html += ch;
+      else html += `<span class="scramble-char">${glyphs[(Math.random() * glyphs.length) | 0]}</span>`;
+    }
+    el.innerHTML = html;
+    if (frame++ < total) requestAnimationFrame(() => setTimeout(tick, 24));
+    else el.textContent = target;
+  };
+  tick();
+}
+function initScramble() {
+  const h1 = document.querySelector(".page-hero h1");
+  if (h1) setTimeout(() => scramble(h1), 200);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { scramble(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  document.querySelectorAll(".section-title h2").forEach(h => io.observe(h));
+}
+
+/* Підсвітка, що йде за курсором */
+function initSpotlight() {
+  if (REDUCED || !FINE_POINTER) return;
+  const s = document.createElement("div");
+  s.className = "spotlight";
+  document.body.prepend(s);
+  addEventListener("mousemove", e => {
+    s.style.setProperty("--x", e.clientX + "px");
+    s.style.setProperty("--y", e.clientY + "px");
+  }, { passive: true });
+}
+
+/* 3D-нахил карток за курсором */
+function initTilt() {
+  if (REDUCED || !FINE_POINTER) return;
+  document.querySelectorAll(".card").forEach(card => {
+    const lift = card.tagName === "A" ? " translateY(-6px)" : "";
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.classList.add("tilting");
+      card.style.transform = `perspective(800px) rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg)${lift}`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("tilting");
+      card.style.transform = "";
+    });
+  });
+}
+
+/* Мережа частинок у шапці внутрішніх сторінок */
+function initNet() {
+  const hero = document.querySelector(".page-hero");
+  if (!hero || REDUCED) return;
+  const c = document.createElement("canvas");
+  c.className = "net";
+  hero.prepend(c);
+  const ctx = c.getContext("2d");
+  let w, h, pts = [];
+  const mouse = { x: -999, y: -999 };
+  const resize = () => {
+    w = c.width = hero.offsetWidth;
+    h = c.height = hero.offsetHeight;
+    const n = Math.min(70, Math.floor(w * h / 14000));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+    }));
+  };
+  resize();
+  addEventListener("resize", resize);
+  hero.addEventListener("mousemove", e => {
+    const r = hero.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  hero.addEventListener("mouseleave", () => { mouse.x = mouse.y = -999; });
+  let visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+  const draw = () => {
+    requestAnimationFrame(draw);
+    if (!visible) return;
+    ctx.clearRect(0, 0, w, h);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      // Частинки трохи відштовхуються від курсора
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+      if (d < 120) { p.x += dx / d * 1.2; p.y += dy / d * 1.2; }
+    }
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 130) {
+          ctx.strokeStyle = `rgba(34,211,238,${(1 - d / 130) * 0.35})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      ctx.fillStyle = i % 5 === 0 ? "#a78bfa" : "#22d3ee";
+      ctx.beginPath(); ctx.arc(pts[i].x, pts[i].y, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+  };
+  draw();
+}
+
+/* Плавний перехід між сторінками сайту */
+function initPageTransitions() {
+  if (REDUCED) return;
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a");
+    if (!a || a.target === "_blank" || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname === location.pathname) return;
+    e.preventDefault();
+    document.body.classList.add("leaving");
+    setTimeout(() => (location.href = a.href), 250);
+  });
+  // Повернення кнопкою «Назад» з кешу браузера
+  addEventListener("pageshow", e => { if (e.persisted) document.body.classList.remove("leaving"); });
+}
+
 buildChrome();
+initAutoReveal();
 initReveal();
 initToc();
 initCardGlow();
+initTilt();
 initCounters();
 initMatrix();
 initTyped();
+initScramble();
+initSpotlight();
+initNet();
+initPageTransitions();
